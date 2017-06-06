@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: 服务B
+
+server:
+   context-path: /
+   port: 9991
+   display-name: 服务B
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka/
