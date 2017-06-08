@@ -1,8 +1,12 @@
 package com.china.springcloud.eureka.service.web;
 
-import com.netflix.discovery.DiscoveryClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.client.serviceregistry.Registration;
+import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,9 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 //@RequestMapping("service/a")
 public class IndexController {
+    
+    private final static Logger logger = LoggerFactory.getLogger(IndexController.class);
+    @Autowired
+    private DiscoveryClient discoveryClient;
 
-//    @Autowired
-//    private DiscoveryClient discoveryClient;
 
     @GetMapping("/")
     public String say(){
@@ -25,6 +31,9 @@ public class IndexController {
 
     @GetMapping("/add")
     public Integer add(@RequestParam Integer a, @RequestParam Integer b ){
-       return  a  + b;
+//        Registration registration =
+        ServiceInstance instance = discoveryClient.getLocalServiceInstance();
+        logger.info("/add,host:{},service_id:{},result:{}",instance.getHost(),instance.getServiceId(),(a+b) + "");
+        return  a  + b;
     }
 }

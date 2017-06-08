@@ -1,13 +1,11 @@
 spring:
   application:
-    name: compute-service
+    name: feign-server
 
 server:
    context-path: /
-   port: 9990
-   display-name: 服务A
-
-
+   port: 9200
+   display-name: feign-server
 
 eureka:
   client:
