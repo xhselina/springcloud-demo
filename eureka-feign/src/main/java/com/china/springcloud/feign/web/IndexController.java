@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by 季先生 on 2017/6/8 10:06.
  */
 @RestController
-
 public class IndexController {
     @Autowired
     ComputeClient computeClient;

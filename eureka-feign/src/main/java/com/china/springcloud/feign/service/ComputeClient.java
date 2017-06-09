@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * Created by 季先生 on 2017/6/8 10:07.
  */
-@Service
 @FeignClient("compute-service")
 public interface ComputeClient {
     @RequestMapping(method = RequestMethod.GET, value = "/add")
